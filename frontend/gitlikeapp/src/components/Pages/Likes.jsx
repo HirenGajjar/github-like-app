@@ -5,8 +5,8 @@ function Likes() {
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg px-4">
-        <table className="w-full text-sm text-left rtl:text-right bg-glass overflow-hidden">
-          <thead className="text-xs uppercase bg-glass">
+        <table className="w-full text-sm text-left rtl:text-right  bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white overflow-hidden">
+          <thead className="text-xs uppercase  bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white">
             <tr>
               <th scope="col" className="p-4">
                 <div className="flex items-center">No</div>
@@ -23,7 +23,7 @@ function Likes() {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-glass border-b">
+            <tr className=" bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white border-b">
               <td className="w-4 p-4">
                 <div className="flex items-center">
                   <span>1</span>
