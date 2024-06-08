@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background-color: black;
+    background-color: rgb(72, 72, 72);
 }
 
 /* dark mode looking scrollbar */
