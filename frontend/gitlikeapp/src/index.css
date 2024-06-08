@@ -28,3 +28,5 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #242424;
 }
+
+/* bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white */
