@@ -7,8 +7,12 @@ import toast from "react-hot-toast";
 
 function Repo({ repo }) {
   const handleCloneClick = async (repo) => {
-    await navigator.clipboard.writeText(repo.clone_url);
-    toast.success("Repo url copied!");
+    try {
+      await navigator.clipboard.writeText(repo.clone_url);
+      toast.success("Repo URL copied!");
+    } catch (err) {
+      toast.error("Failed to copy URL");
+    }
   };
   const formattedDate = formatDate(repo.created_at);
   return (
