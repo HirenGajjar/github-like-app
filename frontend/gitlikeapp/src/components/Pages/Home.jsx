@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Search from "../Search";
 import SortRepos from "../SortRepos";
 import ProfileInfo from "../ProfileInfo";
 import Repos from "../Repos";
 import Spinner from "../Spinner";
+const [userProfile, setUserProfile] = useState(null);
+const [repos, setRepos] = useState([]);
+const [loading, setLoading] = useState(false);
+const [sortType, setSortType] = useState("stars");
 
 function Home() {
   return (

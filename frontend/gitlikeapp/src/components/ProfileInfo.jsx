@@ -28,7 +28,7 @@ function ProfileInfo() {
   return (
     <>
       <div className="lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10">
-        <div className="bg-glass rounded-lg p-4">
+        <div className="bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white rounded-lg p-4">
           <div className="flex gap-4 items-center">
             {/* User Avatar */}
             <a href={userProfile?.html_url} target="_blank" rel="noreferrer">
@@ -44,7 +44,7 @@ function ProfileInfo() {
                 href={userProfile.html_url}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-glass font-medium w-full text-xs p-2 rounded-md cursor-pointer border border-blue-400 flex items-center gap-2"
+                className="bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white font-medium w-full text-xs p-2 rounded-md cursor-pointer border border-blue-400 flex items-center gap-2"
               >
                 <FaEye size={16} />
                 View on Github
@@ -112,25 +112,25 @@ function ProfileInfo() {
 
         <div className="flex flex-wrap gap-2 mx-4">
           {/* Followers Count */}
-          <div className="flex items-center gap-2 bg-glass rounded-lg p-2 flex-1 min-w-24">
+          <div className="flex items-center gap-2 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white rounded-lg p-2 flex-1 min-w-24">
             <RiUserFollowFill className="w-5 h-5 text-blue-800" />
             <p className="text-xs">Followers: {userProfile?.followers}</p>
           </div>
 
           {/* Following count */}
-          <div className="flex items-center gap-2 bg-glass rounded-lg p-2 flex-1 min-w-24">
+          <div className="flex items-center gap-2 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white rounded-lg p-2 flex-1 min-w-24">
             <RiUserFollowLine className="w-5 h-5 text-blue-800" />
             <p className="text-xs">Following: {userProfile?.following}</p>
           </div>
 
           {/* Number of public repos */}
-          <div className="flex items-center gap-2 bg-glass rounded-lg p-2 flex-1 min-w-24">
+          <div className="flex items-center gap-2 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white rounded-lg p-2 flex-1 min-w-24">
             <RiGitRepositoryFill className="w-5 h-5 text-blue-800" />
             <p className="text-xs">Public repos: {userProfile?.public_repos}</p>
           </div>
 
           {/* Number of public gists */}
-          <div className="flex items-center gap-2 bg-glass rounded-lg p-2 flex-1 min-w-24">
+          <div className="flex items-center gap-2 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 hover: bg-gray-600/10 border border-gray-800 text-white rounded-lg p-2 flex-1 min-w-24">
             <RiGitRepositoryFill className="w-5 h-5 text-blue-800" />
             <p className="text-xs">Public gists: {userProfile?.public_gists}</p>
           </div>
