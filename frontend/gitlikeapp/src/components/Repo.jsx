@@ -1,9 +1,15 @@
 import React from "react";
 import { FaCodeBranch, FaCopy, FaRegStar } from "react-icons/fa";
 import { FaCodeFork } from "react-icons/fa6";
-import { IoLogoJavascript } from "react-icons/io5";
+
 import { formatDate } from "../Utils/functions";
+import toast from "react-hot-toast";
+
 function Repo({ repo }) {
+  const handleCloneClick = async (repo) => {
+    await navigator.clipboard.writeText(repo.clone_url);
+    toast.success("Repo url copied!");
+  };
   const formattedDate = formatDate(repo.created_at);
   return (
     <>
@@ -36,10 +42,14 @@ function Repo({ repo }) {
             <FaCodeFork /> {repo.forks_count}
           </span>
           <span
+            onClick={() => {
+              handleCloneClick(repo);
+            }}
             className="cursor-pointer bg-green-100 text-green-800 text-xs
       font-medium px-2.5 py-0.5 rounded-full flex items-center gap-1"
           >
             <FaCopy />
+            Clone
           </span>
         </div>
 
@@ -50,7 +60,14 @@ function Repo({ repo }) {
           Released on {formattedDate}
         </time>
         <p className="mb-4 text-base font-normal text-gray-500">
-          {repo.description ? repo.description : "No description available!"}
+          {repo.description
+            ? repo.description.slice(0, 50)
+            : "No description available!"}
+          {repo.language ? (
+            <p className="text-[12px] text-green-500 ">{repo.language}</p>
+          ) : (
+            <p className="text-[12px] text-red-700">No languages available</p>
+          )}
         </p>
       </li>
     </>
