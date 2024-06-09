@@ -7,7 +7,7 @@ import Spinner from "../Spinner";
 import toast, { Toaster } from "react-hot-toast";
 
 function Home() {
-  const [userProfile, setUserProfile] = useState();
+  const [userProfile, setUserProfile] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sortType, setSortType] = useState("stars");
@@ -22,7 +22,7 @@ function Home() {
       setUserProfile((pre) => userProfile);
 
       const reposResponse = await fetch(userProfile.repos_url);
-      const userRepos = reposResponse.json();
+      const userRepos = await reposResponse.json();
       setRepos(userRepos);
     } catch (err) {
       toast.error(err.message);
@@ -40,9 +40,9 @@ function Home() {
         <Search />
         <SortRepos />
         <div className="flex gap-4 flex-col lg:flex-row justify-center items-start">
-          <ProfileInfo userProfile={userProfile} />
-          <Repos />
-          <Spinner />
+          {userProfile && !loading && <ProfileInfo userProfile={userProfile} />}
+          {repos.length > 0 && !loading && <Repos repos={repos} />}
+          {loading && <Spinner />}
         </div>
       </div>
     </>
