@@ -21,11 +21,11 @@ function Explore() {
       setRepos([]);
       setSelectedLanguage(language);
       const req = await fetch(
-        `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`
+        `http://localhost:3000/api/explore/repos/${language}`
       );
-      const data = await req.json();
+      const { repos } = await req.json();
 
-      setRepos(data.items);
+      setRepos(repos);
       setLoading(false);
     } catch (error) {
       toast.error("No repos found!");
