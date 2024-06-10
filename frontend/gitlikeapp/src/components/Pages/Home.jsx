@@ -16,7 +16,12 @@ function Home() {
     setLoading(true);
     try {
       const userResponse = await fetch(
-        `https://api.github.com/users/${username}`
+        `https://api.github.com/users/${username}`,
+        {
+          headers: {
+            authorization: `token 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`,
+          },
+        }
       );
       const userProfile = await userResponse.json();
       setUserProfile(userProfile);
