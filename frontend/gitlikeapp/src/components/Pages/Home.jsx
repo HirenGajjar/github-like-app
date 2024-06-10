@@ -15,23 +15,15 @@ function Home() {
   const getUserAndRepos = useCallback(async (username = "HirenGajjar") => {
     setLoading(true);
     try {
-      const userResponse = await fetch(
-        `https://api.github.com/users/${username}`,
-        {
-          headers: {
-            authorization: `token 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`,
-          },
-        }
+      const response = await fetch(
+        `http://localhost:3000/api/users/profile/${username}`
       );
-      const userProfile = await userResponse.json();
-      setUserProfile(userProfile);
-      setSortType("recent");
-      const reposResponse = await fetch(userProfile.repos_url);
-      const userRepos = await reposResponse.json();
+      const data = await response.json();
 
-      setRepos(userRepos);
+      setRepos(data.repos);
+      setUserProfile(data.userProfile);
       setLoading(false);
-      return { userProfile, userRepos };
+      return { userProfile, repos };
     } catch (err) {
       toast.error("Check username!");
       setLoading(false);

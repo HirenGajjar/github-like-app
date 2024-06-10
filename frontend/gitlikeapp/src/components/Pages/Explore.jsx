@@ -14,18 +14,14 @@ function Explore() {
   const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState("");
+
   const handleExploreRepos = async (language) => {
     try {
       setLoading(true);
       setRepos([]);
       setSelectedLanguage(language);
       const req = await fetch(
-        `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`,
-        {
-          headers: {
-            authorization: `token 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`,
-          },
-        }
+        `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`
       );
       const data = await req.json();
 
