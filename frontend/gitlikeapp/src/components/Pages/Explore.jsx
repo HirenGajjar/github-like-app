@@ -6,6 +6,8 @@ import { FaJava } from "react-icons/fa";
 import { FaRust } from "react-icons/fa";
 import { FaGolang } from "react-icons/fa6";
 import { toast } from "react-hot-toast";
+import { SiTypescript } from "react-icons/si";
+
 import Repos from "../Repos";
 import Spinner from "../Spinner";
 function Explore() {
@@ -18,7 +20,12 @@ function Explore() {
       setRepos([]);
       setSelectedLanguage(language);
       const req = await fetch(
-        `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`
+        `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`,
+        {
+          headers: {
+            authorization: `token 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`,
+          },
+        }
       );
       const data = await req.json();
 
@@ -42,6 +49,13 @@ function Explore() {
               size={30}
               onClick={() => {
                 handleExploreRepos("javascript");
+              }}
+            />
+            <SiTypescript
+              className="h-11 sm:h-20 cursor-pointer"
+              size={28}
+              onClick={() => {
+                handleExploreRepos("typescript");
               }}
             />
             <FaPython
@@ -80,6 +94,7 @@ function Explore() {
               }}
             />
           </div>
+
           {repos.length > 0 && (
             <h2 className="text-lg font-semibold text-center my-4">
               {selectedLanguage.charAt(0).toUpperCase() +

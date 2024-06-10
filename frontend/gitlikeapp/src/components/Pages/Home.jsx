@@ -10,7 +10,7 @@ function Home() {
   const [userProfile, setUserProfile] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sortType, setSortType] = useState("stars");
+  const [sortType, setSortType] = useState("recent");
 
   const getUserAndRepos = useCallback(async (username = "HirenGajjar") => {
     setLoading(true);
@@ -25,9 +25,10 @@ function Home() {
       );
       const userProfile = await userResponse.json();
       setUserProfile(userProfile);
-
+      setSortType("recent");
       const reposResponse = await fetch(userProfile.repos_url);
       const userRepos = await reposResponse.json();
+
       setRepos(userRepos);
       setLoading(false);
       return { userProfile, userRepos };
