@@ -1,10 +1,30 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa6";
-
-function LikeProfile() {
+import { toast } from "react-hot-toast";
+import { useAuthContext } from "../context/AuthContext";
+function LikeProfile({ userProfile }) {
+  const { authUser } = useAuthContext();
+  const isOwnProfile = authUser?.username === userProfile.login;
   const handleLike = async () => {
-    
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/users/likes/${userProfile.login}`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+      const data = response.json();
+      if (data.error) {
+        toast.error(data.error);
+      }
+      toast.success(data.message);
+    } catch (error) {
+      toast.error("Failed to get data!");
+    }
   };
+  if (!authUser || isOwnProfile) return null;
+
   return (
     <>
       <button
