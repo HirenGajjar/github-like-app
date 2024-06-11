@@ -7,8 +7,10 @@ import { FaHeart } from "react-icons/fa";
 import { MdOutlineExplore } from "react-icons/md";
 import { PiSignInBold } from "react-icons/pi";
 import { MdEditDocument } from "react-icons/md";
+import { useAuthContext } from "../context/AuthContext";
 function Sidebar() {
-  const authUser = true;
+  const { authUser } = useAuthContext();
+
   return (
     <>
       <aside

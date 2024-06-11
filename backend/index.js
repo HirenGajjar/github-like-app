@@ -9,14 +9,15 @@ const { DBConnection } = require("./db/db");
 const session = require("express-session");
 const passport = require("passport");
 require("./Controllers/Passport/github.auth");
-// Middlewares
-app.use(cors());
+// Cors
+app.use(cors({ origin: true, credentials: true }));
+// Body parser
 app.use(express.json());
-// Use passport
+// Use passport session
 app.use(
   session({ secret: "keyboard cat", resave: false, saveUninitialized: false })
 );
-
+// Passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
 //DB Connection
@@ -28,4 +29,5 @@ app.get("/", (req, res) => {
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/explore", exploreRouter);
+
 app.listen(process.env.PORT);
