@@ -18,8 +18,27 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: "/api/auth/github/callback",
     },
-    function (accessToken, refreshToken, profile, cb) {
-      console.log(profile);
+    async function (accessToken, refreshToken, profile, done) {
+      const user = await userModel.findOne({
+        username: profile.username,
+      });
+      // If user have not signed up with github
+      if (!user) {
+        const newUser = await new userModel({
+          name: profile.displayName,
+          username: profile.username,
+          profileUrl: profile.profileUrl,
+          avatarUrl: profile.photos[0].value,
+          likedProfiles: [],
+          likedBy: [],
+        });
+        await newUser.save();
+        done(null, newUser);
+      }
+      // If user have signed up so now login
+      else {
+        done(null, user);
+      }
     }
   )
 );
