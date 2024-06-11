@@ -6,29 +6,27 @@ const useAuthContext = () => {
 };
 const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
-      // setLoading(true);
       try {
+        setLoading(true);
         const response = await fetch(`http://localhost:3000/api/auth/check/`, {
           credentials: "include",
         });
-
         const data = await response.json();
-        console.log(data);
         setAuthUser(data.user);
-        // setLoading(false);
       } catch (err) {
         toast.error("Unauthorized User!");
-        // setLoading(false);
+      } finally {
+        setLoading(false);
       }
     };
     checkUserLoggedIn();
   }, []);
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, loading }}>
       {children}
     </AuthContext.Provider>
   );

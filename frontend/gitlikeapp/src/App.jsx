@@ -10,8 +10,9 @@ import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
 
 function App() {
-  const { authUser } = useAuthContext();
+  const { authUser, loading } = useAuthContext();
 
+  if (loading) return null;
   return (
     <>
       <div className="flex">
