@@ -23,7 +23,8 @@ function Home() {
       setRepos(data.repos);
       setUserProfile(data.userProfile);
       setLoading(false);
-      return { userProfile, repos };
+
+      return { userProfile: data.userProfile, repos: data.repos };
     } catch (err) {
       toast.error("Check username!");
       setLoading(false);
@@ -38,9 +39,10 @@ function Home() {
     setLoading(true);
     setRepos([]);
     setUserProfile(null);
-    const { userProfile, userRepos } = await getUserAndRepos(username);
+    const { userProfile, repos } = await getUserAndRepos(username);
+
     setUserProfile(userProfile);
-    setRepos(userRepos);
+    setRepos(repos);
     setLoading(false);
   };
   const onSort = async (sortType) => {
