@@ -8,7 +8,7 @@ function LikeProfile({ userProfile }) {
   const handleLike = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/likes/${userProfile.login}`,
+        `http://localhost:3000/api/users/like/${userProfile.login}`,
         {
           method: "POST",
           credentials: "include",
@@ -16,7 +16,7 @@ function LikeProfile({ userProfile }) {
       );
       const data = response.json();
       if (data.error) {
-        toast.error(data.error);
+        toast.error(data.error); 
       }
       toast.success(data.message);
     } catch (error) {
